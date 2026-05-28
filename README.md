@@ -21,6 +21,49 @@ plugin manifests are thin wrappers around the same skill content.
 stay host-neutral. Update this shared skill instead of maintaining separate
 Claude and Codex instruction trees.
 
+## Prerequisites
+
+These apply to anyone installing the plugin into Claude Code or Codex.
+
+### 1. GitHub transport for plugin clone
+
+Claude Code's plugin installer (and likely Codex's, pending confirmation)
+clones plugin source from GitHub over SSH by default. Before
+`/plugin install`, make sure one of these is true:
+
+- A working GitHub SSH key on this machine (test: `ssh -T git@github.com`).
+- A global git URL rewrite that pushes plugin clones through HTTPS:
+
+  ```
+  git config --global url."https://github.com/".insteadOf "git@github.com:"
+  ```
+
+  This is safe for repos cloned by other tooling too; standard pattern when
+  `gh` is authenticated via HTTPS.
+
+### 2. `ALLOY_TOKEN` environment variable
+
+The bundled `.mcp.json` reads the Alloy MCP bearer from `ALLOY_TOKEN`. Export
+it in the host shell **before** starting Claude Code or Codex:
+
+```
+export ALLOY_TOKEN="<your-alloy-token>"
+```
+
+Get a token at https://alloy.cx/docs/reference/tech-docs/hosted-mcp. If the
+variable is missing at host start, the Alloy MCP server silently does not
+register and the skill cannot reach Alloy storage.
+
+### 3. Restart the host after install
+
+The plugin's MCP server picks up only when the host starts with the plugin
+already enabled. After `/plugin install work-with-alloy`, restart Claude Code
+(or Codex) and confirm registration:
+
+```
+claude mcp list   # expect plugin:work-with-alloy:alloy as ✓ Connected
+```
+
 ## Codex
 
 The Codex plugin manifest references `./skills/` and `./.mcp.json`.
