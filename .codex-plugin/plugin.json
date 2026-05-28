@@ -1,0 +1,38 @@
+{
+  "name": "work-with-alloy",
+  "version": "0.1.0",
+  "description": "Work with Alloy MCP, Storage, documentation, and operating context.",
+  "author": {
+    "name": "Alloy Systems",
+    "url": "https://alloy.cx"
+  },
+  "homepage": "https://alloy.cx",
+  "repository": "https://github.com/Alloy-Systems/work-with-alloy",
+  "license": "Apache-2.0",
+  "keywords": [
+    "alloy",
+    "mcp",
+    "storage",
+    "knowledge"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Work with Alloy",
+    "shortDescription": "Use Alloy MCP and Storage as the source of truth.",
+    "longDescription": "Adds the Work with Alloy skill and Alloy MCP configuration for working with Alloy Storage, documentation, teammates, workflows, and connected systems.",
+    "developerName": "Alloy Systems",
+    "category": "Productivity",
+    "capabilities": [
+      "Knowledge",
+      "Storage",
+      "MCP"
+    ],
+    "websiteURL": "https://alloy.cx",
+    "defaultPrompt": [
+      "Use Alloy as the source of truth for this task.",
+      "Find the relevant Alloy knowledge before answering.",
+      "Create a durable Alloy note for this work."
+    ]
+  }
+}

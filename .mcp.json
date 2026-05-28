@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "alloy": {
+      "type": "http",
+      "url": "https://api.alloy.cx/mcp",
+      "headers": {
+        "Authorization": "Bearer ${ALLOY_TOKEN}"
+      }
+    }
+  }
+}
