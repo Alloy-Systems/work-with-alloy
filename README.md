@@ -47,7 +47,16 @@ The Codex plugin manifest references `./skills/` and `./.mcp.json`.
 
 Set `ALLOY_TOKEN` in the host environment before using the bundled MCP config.
 
-The Codex install and marketplace flow still needs end-to-end validation.
+Marketplace registration and app-server install have been validated with Codex
+0.125.0:
+
+```bash
+codex plugin marketplace add Alloy-Systems/alloy-marketplace
+```
+
+Codex installs `work-with-alloy` from the marketplace entry pointing at a tagged
+release. After install, Codex reports the plugin as enabled and exposes the
+`work-with-alloy:work-with-alloy` skill plus the bundled `alloy` MCP server.
 
 ## Claude Code
 
