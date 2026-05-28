@@ -76,7 +76,7 @@ All of these mean: write the note to the appropriate Alloy `knowledge.md` and up
 
 | Target | Shape |
 |--------|-------|
-| Storage doc or folder | `https://app.alloy.cx/cowork?path=/<storage_path>` (leading slash required) |
+| Storage doc or folder | `https://app.alloy.cx/cowork?path=/<storage_path>` (leading slash required; URL-encode spaces as `%20` and other RFC 3986 reserved chars) |
 | AI Teammate | `https://app.alloy.cx/staff/ai/<uuid>` |
 | Other entities (Workflow, Skill, etc.) | Look up the exact shape via Alloy MCP documentation tools |
 
@@ -246,7 +246,9 @@ https://app.alloy.cx/cowork?path=<storage_path>
 Rules:
 
 * include the leading slash in the `path` query value
-* after any create, move, rename, copy, or update, provide both the exact Alloy path and the full Cowork link
+* **URL-encode** spaces and other special characters in the `path` value. Spaces become `%20`; other reserved characters per RFC 3986 (`?`, `#`, `&`, `+`, etc.) must also be encoded if they appear in folder or file names.
+  * Example: `/Personal/Artem Burachenok/Notes/file.md` → `?path=/Personal/Artem%20Burachenok/Notes/file.md`
+* after any create, move, rename, copy, or update, provide both the exact Alloy path (unencoded, for human reading) and the full Cowork link (encoded, ready to click)
 
 ## Logs and inboxes
 
