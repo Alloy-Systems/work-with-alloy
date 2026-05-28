@@ -119,3 +119,7 @@ Tags are cut per logical release, not on every commit. A typical trigger is a
 new Core rule landing, a new reference playbook being added, or a breaking
 restructure being completed and ready to ship. Cosmetic-only changes can
 accumulate in `main` and be released as a patch bump when convenient.
+
+## License
+
+Apache License 2.0.
