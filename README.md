@@ -25,50 +25,29 @@ Claude and Codex instruction trees.
 
 These apply to anyone installing the plugin into Claude Code or Codex.
 
-### 1. GitHub transport for plugin clone
-
-Claude Code's plugin installer (and likely Codex's, pending confirmation)
-clones plugin source from GitHub over SSH by default. Before
-`/plugin install`, make sure one of these is true:
-
-- A working GitHub SSH key on this machine (test: `ssh -T git@github.com`).
-- A global git URL rewrite that pushes plugin clones through HTTPS:
-
-  ```
-  git config --global url."https://github.com/".insteadOf "git@github.com:"
-  ```
-
-  This is safe for repos cloned by other tooling too; standard pattern when
-  `gh` is authenticated via HTTPS.
-
-### 2. `ALLOY_TOKEN` environment variable
+### 1. `ALLOY_TOKEN` environment variable
 
 The bundled `.mcp.json` reads the Alloy MCP bearer from `ALLOY_TOKEN`. Export
-it in the host shell **before** starting Claude Code or Codex:
+it in the host shell before starting Claude Code or Codex:
 
 ```
 export ALLOY_TOKEN="<your-alloy-token>"
 ```
 
-Get a token at https://alloy.cx/docs/reference/tech-docs/hosted-mcp. If the
-variable is missing at host start, the Alloy MCP server silently does not
-register and the skill cannot reach Alloy storage.
+Get a token at https://alloy.cx/docs/reference/tech-docs/hosted-mcp.
 
-### 3. Restart the host after install
+### 2. Host restart after install
 
-The plugin's MCP server picks up only when the host starts with the plugin
-already enabled. After `/plugin install work-with-alloy`, restart Claude Code
-(or Codex) and confirm registration:
-
-```
-claude mcp list   # expect plugin:work-with-alloy:alloy as ✓ Connected
-```
+The plugin's MCP server is loaded by the host at startup. After installing or
+updating the plugin, restart the host so it can load the bundled MCP config.
 
 ## Codex
 
 The Codex plugin manifest references `./skills/` and `./.mcp.json`.
 
 Set `ALLOY_TOKEN` in the host environment before using the bundled MCP config.
+
+The Codex install and marketplace flow still needs end-to-end validation.
 
 ## Claude Code
 
@@ -81,9 +60,23 @@ marketplace is published:
 /plugin install work-with-alloy
 ```
 
+Claude Code's plugin installer clones plugin source from GitHub over SSH by
+default. Before `/plugin install`, make sure one of these is true:
+
+- A working GitHub SSH key on this machine (test: `ssh -T git@github.com`).
+- A global git URL rewrite that pushes plugin clones through HTTPS:
+
+  ```
+  git config --global url."https://github.com/".insteadOf "git@github.com:"
+  ```
+
 Set `ALLOY_TOKEN` in the host environment before using the bundled MCP config.
-The manifest still needs to be validated end-to-end against Claude Code before
-the first public tag.
+
+After install, restart Claude Code and confirm registration:
+
+```
+claude mcp list   # expect plugin:work-with-alloy:alloy as connected
+```
 
 ## Versioning policy
 
