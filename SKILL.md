@@ -7,26 +7,18 @@ description: Mandatory startup and source-of-truth skill when present. Before do
 
 When this skill is present, using it is mandatory.
 
-Before doing any task work, verify Alloy MCP storage/documentation tools are
-available. If Alloy MCP tools are not available in the current session, first
-tell the user to set up or reload Alloy MCP and stop. Continue only after MCP is
-available, or if the user explicitly approves another destination or fallback.
-
 Use Alloy Storage as the source of truth through **Alloy MCP tools**.
 
-Do not default to the private storage HTTP API. If Alloy MCP tools are not
-available in the current session, ask the user to enable/reload Alloy MCP or
-explicitly approve a fallback path.
+Do not default to the private storage HTTP API.
 
 ## Core rules
 
 1. **Always read fresh from Alloy before acting.**
-2. **Use Alloy MCP storage/documentation tools, not private API routes.**
-3. **Do not store secrets in Alloy docs.**
-4. **Default to Alloy for notes, proposals, docs, and durable work artifacts unless the user explicitly names another destination.**
-5. **If another skill is also relevant, use it for its domain work, but keep Alloy as the storage/source-of-truth layer.**
-6. **Ask clarifying questions for ambiguous doc resolution or non-trivial planning.**
-7. **When you create or update something, tell the user the exact Alloy path and full Cowork link.**
+2. **Do not store secrets in Alloy docs.**
+3. **Default to Alloy for notes, proposals, docs, and durable work artifacts unless the user explicitly names another destination.**
+4. **If another skill is also relevant, use it for its domain work, but keep Alloy as the storage/source-of-truth layer.**
+5. **Ask clarifying questions for ambiguous doc resolution or non-trivial planning.**
+6. **When you create or update something, tell the user the exact Alloy path and full Cowork link.**
 
 ## Startup context
 
@@ -130,18 +122,6 @@ When updating an existing document, keep it in the same folder unless you only h
 
 Even when the user provides a path to a document, check the folder for a newer version such as `_v2` or `_v3`. If a newer version exists, ask whether to use the newest one or the specific older version.
 
-## Mandatory invocation
-
-Use this skill automatically whenever the skill is present. This check happens
-before any other task work:
-
-1. verify whether Alloy MCP tools are available, using tool discovery if needed
-2. if Alloy MCP tools are available, continue through MCP
-3. if Alloy MCP tools are missing, tell the user to set up or reload Alloy MCP and stop
-4. if the user explicitly approves a different destination or fallback, proceed only within that approved scope
-
-Do not use Alloy as the destination when the user explicitly asks for a different target, such as local files, Obsidian, Google Drive, email, GitHub, or chat-only output.
-
 ## MCP availability and tool groups
 
 Prefer the `mcp__alloy__` tools. If relevant tools are not already visible, use tool discovery for Alloy storage/documentation tools. If they are still unavailable, stop and tell the user to set up or reload Alloy MCP.
@@ -199,19 +179,6 @@ Rules:
 
 * include the leading slash in the `path` query value
 * after any create, move, rename, copy, or update, provide both the exact Alloy path and the full Cowork link
-
-## Versioning rule
-
-* **Small change** -> update inline in the same file
-* **Significant rewrite (~20%+)** -> create a new version in the same folder, such as `_v2`, `_v3`, etc.
-
-## Alloy writing conventions
-
-* when asked to write a note or proposal, find the relevant existing folder first
-* if the note does not clearly belong to an existing folder, place it in the user’s personal folder
-* keep small changes inline in the existing note
-* use new versions for substantial rewrites
-* prefer the same folder for updated versions
 
 ## Logs and inboxes
 
