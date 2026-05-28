@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin",
+  "name": "work-with-alloy",
+  "displayName": "Work with Alloy",
+  "version": "0.1.0",
+  "description": "Work with Alloy MCP, Storage, documentation, and operating context.",
+  "author": {
+    "name": "Alloy Systems",
+    "url": "https://alloy.cx"
+  },
+  "homepage": "https://alloy.cx",
+  "repository": "https://github.com/Alloy-Systems/work-with-alloy",
+  "license": "Apache-2.0",
+  "keywords": [
+    "alloy",
+    "mcp",
+    "storage",
+    "knowledge"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
