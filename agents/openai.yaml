@@ -1,0 +1,6 @@
+interface:
+  display_name: "Work with Alloy"
+  short_description: "Default to Alloy Storage for docs, notes, proposals, artifacts, and artifact logs."
+  default_prompt: "Use Alloy Storage as the source of truth for durable notes, proposals, docs, and work artifacts unless another destination is explicitly requested."
+policy:
+  allow_implicit_invocation: true
