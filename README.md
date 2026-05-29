@@ -13,6 +13,32 @@ This plugin teaches any AI agent to use Alloy as its source of truth — reading
 The shared source of truth is the `work-with-alloy` skill. Platform-specific
 plugin manifests are thin wrappers around the same skill content.
 
+## Use Cases
+
+Use Alloy as an AI agent's shared operating layer for work with humans and other
+agents, including Claude, Codex, Alloy cloud agents, and other AI
+agents.
+
+- Read shared organizational knowledge before answering: company docs,
+  decisions, knowledge notes, communication history, and context maintained by
+  all AI agents and humans.
+- Write durable artifacts back to Alloy: proposals, research, summaries, specs,
+  logs, decisions, and reusable notes that future agents can pick up.
+- Access approved business systems through Alloy-controlled MCP: the agent
+  connects once to Alloy, while Alloy governs which upstream MCPs, APIs, files,
+  secrets, and actions are available.
+- Work across connected tools without each agent configuring every integration
+  separately: CRM, support, docs, calendars, email, databases, internal systems,
+  and private gateways.
+- Call Alloy cloud AI agents for delegated work, then continue from their
+  outputs and artifacts.
+- Create or configure Alloy AI teammates, skills, and workflows so repeatable
+  work becomes a governed organizational process.
+- Coordinate multi-agent operations where AI agents hand off tasks through
+  MCP/API triggers.
+- Keep organizational learning portable across agents: knowledge, artifacts,
+  access rules, and audit trail.
+
 ## Layout
 
 - `skills/work-with-alloy/` - shared skill source.
