@@ -3,9 +3,7 @@
     "alloy": {
       "type": "http",
       "url": "https://api.alloy.cx/mcp",
-      "headers": {
-        "Authorization": "Bearer ${ALLOY_TOKEN}"
-      }
+      "bearer_token_env_var": "ALLOY_TOKEN"
     }
   }
 }
