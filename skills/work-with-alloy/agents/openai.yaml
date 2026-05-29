@@ -1,6 +1,8 @@
 interface:
   display_name: "Work with Alloy"
-  short_description: "Default to Alloy Storage for docs, notes, proposals, artifacts, and artifact logs."
-  default_prompt: "Use Alloy Storage as the source of truth for durable notes, proposals, docs, and work artifacts unless another destination is explicitly requested."
+  short_description: "Use Alloy Workspace as a source of truth."
+  icon_small: "./assets/alloy-color.svg"
+  brand_color: "#111827"
+  default_prompt: "Use $work-with-alloy and Alloy Workspace as a source of truth for knowledge, artifacts, and connecting to other systems."
 policy:
   allow_implicit_invocation: true

@@ -18,6 +18,7 @@ plugin manifests are thin wrappers around the same skill content.
 - `skills/work-with-alloy/` - shared skill source.
 - `skills/work-with-alloy/references/` - supporting playbooks loaded by the skill.
 - `skills/work-with-alloy/agents/openai.yaml` - Codex/OpenAI skill UI metadata.
+- `skills/work-with-alloy/assets/` - skill UI assets such as the Alloy icon.
 - `.codex-plugin/plugin.json` - Codex plugin manifest.
 - `.claude-plugin/plugin.json` - Claude Code plugin manifest.
 - `.mcp.json` - Alloy hosted MCP configuration using `ALLOY_TOKEN`.
