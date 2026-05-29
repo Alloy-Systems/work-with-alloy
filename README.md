@@ -1,7 +1,14 @@
 # Work with Alloy
 
-Portable agent plugin source for working with Alloy MCP, Storage,
-documentation, and Alloy operating context across Codex and Claude Code.
+## About Alloy
+
+Alloy is an AI-native workspace where your team and AI agents collaborate — sharing artifacts, knowledge, skills, and access to external systems, all on one foundation. Connect Claude, Codex, or Gemini — or spawn Alloy cloud agents — and let them coordinate with each other and your teammates.
+
+Start free at [alloy.cx](https://alloy.cx) · Docs: [alloy.cx/docs](https://alloy.cx/docs)
+
+---
+
+This plugin teaches any AI agent to use Alloy as its source of truth — reading shared knowledge before answering, writing durable notes and artifacts, creating workflows, and spawning autonomous agents.
 
 The shared source of truth is the `work-with-alloy` skill. Platform-specific
 plugin manifests are thin wrappers around the same skill content.
