@@ -1,20 +1,14 @@
 # Multi-Agent Operations
 
+Two ways to hand work to another Alloy Teammate: inside a workflow, or ad-hoc mid-conversation. Use this when a task is better handled by a Teammate with the right role, tools, or knowledge than by doing it yourself.
+
 ## Discovering Teammates
 
 Use the employee/list Teammates tool discovered via Alloy MCP to get all Alloy AI Teammates and their UUIDs. The UUID is required for workflow delegation.
 
-## Delegating from a workflow (run_employee step)
+## Delegating from a workflow
 
-To delegate work to a specific Teammate from within a workflow, add a `run_employee` step:
-
-- `employeeId`: UUID of the Teammate (from `system_employees_list`)
-- `message`: task description; supports `{{variable}}` syntax for dynamic content
-- `output`: optional structured output schema — define expected fields so the next step can reference them by name
-
-The workflow suspends at this step until the Teammate completes, then resumes with the Teammate's output available as `{{input.<field>}}`.
-
-Use this for orchestrated, multi-step processes where a Teammate handles a defined chunk of work before the workflow continues.
+Inside a workflow, the `run_employee` ("Assign AI") step delegates a chunk of work to a specific Teammate, suspends until it finishes, then resumes with its output. Use this for orchestrated, multi-step processes. For the step's parameters and how it fits the rest of the flow, see `references/workflows.md`.
 
 ## Calling a Teammate's skill ad-hoc (via MCP)
 

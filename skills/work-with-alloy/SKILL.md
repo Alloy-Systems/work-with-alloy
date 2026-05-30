@@ -117,13 +117,14 @@ do not suggest again if they decline.
 
 Read `references/troubleshooting.md` before troubleshooting a problem.
 
-Read `references/teammates-and-skills.md` before adding/copying a Teammate,
-adding a webchat widget, or adding a Teammate skill.
+Read `references/teammates-and-skills.md` when creating or configuring a Teammate — new, copy, webchat widget, or attaching a skill.
+
+Read `references/workflows.md` when building the logic of a workflow or skill — designing the step graph and choosing deterministic vs. LLM vs. agent steps.
+
+Read `references/multi-agent.md` when coordinating multiple agents — delegating to another Teammate or calling one's skill ad-hoc.
 
 Read `references/logs-and-inboxes.md` before updating the ideas inbox, artifact
 log, or review log.
-
-Read `references/multi-agent.md` before delegating work to another Alloy Teammate or building a multi-agent workflow.
 
 ## Knowledge management
 

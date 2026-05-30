@@ -14,6 +14,8 @@ Storage write access requires read access as well.
 
 After building, tell the user instructions and settings need correct data and help them fill it.
 
+If the Teammate's instructions get long, move them into a separate `.md` note in Alloy Storage and reference that note from the instructions instead of inlining everything. The folder holding that note must be shared with the Teammate, or it cannot read it — sharing it is a must.
+
 ## Add a Webchat Widget
 
 When adding a webchat widget to a Teammate, post the chat widget script to chat so the user can test it.
@@ -27,6 +29,8 @@ Do not ask extra questions. Make an exact copy of the existing Teammate with all
 After creating the copy, compare it with the original yourself. Provide the link to it, then ask whether the user wants to share storage folders with the copied Teammate.
 
 ## Add a Skill for a Teammate
+
+A skill is a workflow attached to a Teammate, so the same engine applies — for designing the step graph and choosing deterministic vs. LLM vs. agent steps, see `references/workflows.md`. The points below are the Teammate-specific concerns layered on top.
 
 If a built-in tool can perform the requested function, suggest adding the tool instead. Exceptions: `run_code` and HTTP request tools are dangerous; only connect them after explaining security risks and getting confirmation.
 
