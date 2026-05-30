@@ -30,7 +30,7 @@ If Alloy MCP tools are not available in the current session:
 5. **Do not store secrets in Alloy docs.**
 6. **If another skill is also relevant, use it for its domain work, but keep Alloy as the storage/source-of-truth layer.**
 7. **Ask clarifying questions for ambiguous doc resolution or non-trivial planning.**
-8. **When you create or update something, tell the user the exact Alloy path and full Cowork link.**
+8. **When you create or update something**: tell the user what changed; for Alloy entities include the entity URL; for Storage documents include the exact path and full Cowork link; note if you created a new version instead of editing inline.
 
 ## Loophole guard: knowledge belongs in Alloy
 
@@ -64,8 +64,7 @@ All of these mean: write the note to the appropriate Alloy `knowledge.md` and up
 |------|---------|
 | `/Organization/organization.md` | Core business context; read first 50 lines at startup |
 | `/Organization/knowledge.md` | Org knowledge directory note; read first 50 lines at startup |
-| `/Organization/Corrections/[date_time]_[agent_name]_[random].md` | Dated correction note when the user disputes org context |
-| `/Personal/<alloy_username>/` | User's personal folder; default destination when no other folder fits |
+| `/Personal/<alloy_username>/` | User's personal folder; default destination when no other folder fits. Create it if it doesn't exist. |
 | `/Personal/<alloy_username>/.knowledge/knowledge.md` | User knowledge directory note; read first 50 lines at startup |
 | `/Personal/<alloy_username>/.artifact-log/artifact-log.md` | User artifact log |
 | `/<area>/.knowledge/knowledge.md` | Area-level knowledge (customer, partner, product, project, department) |
@@ -80,21 +79,20 @@ All of these mean: write the note to the appropriate Alloy `knowledge.md` and up
 | AI Teammate | `https://app.alloy.cx/staff/ai/<uuid>` |
 | Other entities (Workflow, Skill, etc.) | Look up the exact shape via Alloy MCP documentation tools |
 
-### Limits and versioning
+### Document versioning
 
-| Subject | Threshold / Rule |
-|---------|------------------|
-| Small note update | Edit inline in the existing file |
+| Subject | Rule |
+|---------|------|
+| Small update | Edit inline in the existing file |
 | Significant rewrite (~20%+) | New version in the same folder: `_v2`, `_v3`, … |
 | Editing a doc by user-provided path | First check the folder for a newer `_v2`/`_v3`; confirm with user |
 | Existing doc, no write rights in its folder | Create the updated copy in the user's personal folder |
-| Individual knowledge note | ≤ ~1000 chars; split or trim if larger |
-| `knowledge.md` directory note | Overview ≤ ~300 chars; total ≤ ~1000 chars |
 
 ## Startup context
 
 At the beginning of every conversation/task, after Alloy MCP availability is
-confirmed and `alloy_username` is known, read the first 50 lines from each of:
+confirmed, resolve `alloy_username` if not already known (via Alloy MCP or by
+asking the user). Then read the first 50 lines from each of:
 
 * `Organization/organization.md`
 * `Organization/knowledge.md`
@@ -114,11 +112,6 @@ whether the user wants help filling basics such as business name, what it does,
 and customers. Offer to inspect the user's website. Remember the preference and
 do not suggest again if they decline.
 
-## Personal folder
-
-The user's personal storage folder is `Personal/<alloy_username>/`. It is for
-personal work and work that does not clearly belong to a company folder. If it
-does not exist, create it before writing personal artifacts.
 
 ## Reference playbooks
 
@@ -130,54 +123,15 @@ adding a webchat widget, or adding a Teammate skill.
 Read `references/logs-and-inboxes.md` before updating the ideas inbox, artifact
 log, or review log.
 
+Read `references/multi-agent.md` before delegating work to another Alloy Teammate or building a multi-agent workflow.
+
 ## Knowledge management
 
-Canonical knowledge locations:
+Durable knowledge is stored as small individual files linked from a `knowledge.md` directory note at four scopes: organization, user, area (project/product/customer/department), and agent.
 
-* Organization knowledge: `Organization/knowledge.md` and linked notes. Use for company-wide facts, policies, source-of-truth pointers, cross-team rules, and shared caveats.
-* User knowledge: `Personal/<alloy_username>/.knowledge/knowledge.md` and linked notes. Use for durable facts about a person: role, preferences, working style, stable constraints, and recurring context.
-* Area knowledge: `<area>/.knowledge/knowledge.md` and linked notes. Use for a customer, partner, product area, project, department, or folder, including sources of information, how things are done, how decisions are made, do/don't rules, escalation contacts, and notification expectations.
-* Agent-specific knowledge: `Personal/<agent>/.knowledge/knowledge.md` and linked notes. Use only for knowledge about a specific agent or its role/behavior that does not fit elsewhere.
+Before starting a task, check whether relevant area or topic knowledge exists and read it first. Use judgment: skip this for general questions with no Alloy context (e.g. "how do I take a screenshot"), but do it whenever the task touches something the user or org might have guidelines, preferences, or prior decisions about — content, tone, a specific product, a customer, a workflow, etc.
 
-Update knowledge when the user explicitly asks, or when you notice durable/reusable knowledge during normal work. Do not save one-off details, obvious facts, or information already clear from nearby documents, tickets, code, or source systems.
-
-Put knowledge in the most specific relevant place. Default to area-level knowledge. Ask yourself why it is not an area note, and whether it is truly only the user's individual preference or a best practice everyone should use. If unsure, ask the user.
-
-Create missing area and `.knowledge/` folders when needed.
-
-Use one file for one small fact, instruction, caveat, reference, or reusable decision principle. Keep individual knowledge notes under about 1000 characters; split or trim if larger.
-
-After creating or updating a note, update the relevant `knowledge.md` directory note.
-
-Keep `knowledge.md` mostly navigational: overview around 300 characters max, total around 1000 characters max.
-
-You may create, update, and delete stale/deprecated knowledge without asking.
-
-If user input, local knowledge, product docs, CRM, or another system disagree, stop and ask the human you are interacting with to clarify.
-
-Before relying on a knowledge note that names a file, function, setting, source, or external system, verify that the referenced thing still exists when practical.
-
-### Directory note template
-
-```md
-<Optional 1-2 sentence overview of this org/user/area/agent knowledge scope. Max ~300 chars.>
-
-- [Short descriptive title](./piece-of-knowledge.md) - one-line note on when this is relevant.
-- [Another title](./another-piece.md) - one-line note on when this is relevant.
-```
-
-### Individual note template
-
-```md
-Name: <3-4 word title>
-Description: <one-line relevance summary>
-Type: user | feedback | project | reference | source | playbook | caveat | decision_rule
-
-<One compact fact, instruction, caveat, reference, or reusable rule.>
-
-How to apply: <How an agent should use this later. Omit if obvious.>
-Source: <person, document, system, ticket, thread, URL, or file path>
-```
+Write or update a knowledge note when the user asks, or when you notice something durable and reusable — a preference, a rule, a decision, a caveat. Skip one-off details and things already obvious from nearby context. Read `references/knowledge-management.md` before creating or updating knowledge notes.
 
 ## Documents and Storage
 
@@ -185,13 +139,7 @@ Our work happens in Alloy Storage. When the user asks you to write a note or pro
 
 If a note does not clearly belong to the existing folder structure, put it in `Personal/<alloy_username>/`.
 
-When updating a note with something small, update inline in the existing note.
-
-When doing a significant rewrite, roughly 20% or more, create a new version in the same folder and mark it `_v2`, `_v3`, etc.
-
-When updating an existing document, keep it in the same folder unless you only have read rights there. If you cannot write there, create the updated document in the user's personal folder.
-
-Even when the user provides a path to a document, check the folder for a newer version such as `_v2` or `_v3`. If a newer version exists, ask whether to use the newest one or the specific older version.
+For update and versioning rules, see the Document versioning table in Quick Reference above.
 
 ## Alloy MCP tool groups
 
@@ -199,12 +147,13 @@ Prefer the `mcp__alloy__` tools. Tool names may change, so discover the current 
 
 * **Storage** - organization/user files, notes, artifacts, images, search, metadata, temporary file URLs, and file operations.
 * **Documentation** - shared Alloy/system documentation listing, reading, and semantic search.
-* **System employees** - create, update, inspect, and list Alloy employees/AI teammates.
-* **System skills and workflows** - read, create, update, test, and list employee skills or organization workflows.
-* **System organization actions** - perform supported organization-level actions exposed by Alloy.
+* **System skills and workflows** — manage Teammate skills and build workflows. Workflows serve two purposes: multi-agent orchestration (see `references/multi-agent.md`) and standalone automation — running code, calling external APIs, and moving data between systems without an agent in the loop.
+* **System administration** — manage the full Alloy organization: create and configure AI Teammates, set up MCP connections, build workflows, change settings, issue invites, and perform other org-level actions. An agent can do anything a human admin can within its access rights.
 * **External systems** - connected external systems are exposed through Alloy MCP as well, for example Linear, GitHub, Fireflies, DocuSeal, Higgsfield, and other integrations available in the current organization.
 
 Use documentation tools for Alloy system documentation. Use storage tools for organization/user notes and artifacts. Use integration groups only when the user request or gathered context calls for that external system.
+
+By default, prefer Alloy MCP for external system access. If a system like Linear, GitHub, email, or calendar is connected, it appears as an `mcp__alloy__<System>__*` tool group — no separate API keys or direct integrations needed. If a needed system is missing, flag it to the user as something to connect in Alloy settings rather than configuring it yourself. Direct integrations (e.g. a local Playwright MCP) are fine when there is no Alloy-connected equivalent.
 
 ## Local preferences
 
@@ -224,14 +173,11 @@ Derive personal paths from `alloy_username` when needed, for example
 `/Personal/<alloy_username>/` and
 `/Personal/<alloy_username>/.artifact-log/artifact-log.md`.
 
-If `alloy_username` is missing, resolve it through Alloy MCP or ask the user
-before writing to personal paths.
 
 ## Path rules
 
 * treat `/` as root
 * use leading slashes for explicit storage paths
-* if a tool returns a canonical path, use that path in follow-up operations
 * keep notes in the most relevant existing folder; if unclear, use the user’s personal folder
 * do not crawl the whole org unless the user clearly wants that
 
@@ -264,12 +210,3 @@ Before deleting, moving, or renaming something important or ambiguous:
 * use exact resolved paths
 * for Storage docs/artifacts, move them to a `Deleted` folder instead of deleting; create the `Deleted` folder first if it does not exist
 * prefer safety over speed
-
-## Response behavior
-
-When you finish a task:
-
-* tell the user what you created or updated
-* for Alloy entities, include the exact Alloy URL to the entity, such as an updated Teammate
-* for Storage documents, include the exact Alloy path and full Cowork URL
-* mention if you created a new version instead of editing inline
