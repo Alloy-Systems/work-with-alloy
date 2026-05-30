@@ -1,6 +1,6 @@
 {
   "name": "work-with-alloy",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Work with Alloy MCP, Storage, documentation, and operating context.",
   "author": {
     "name": "Alloy Systems",
@@ -29,6 +29,9 @@
       "MCP"
     ],
     "websiteURL": "https://alloy.cx",
+    "brandColor": "#111827",
+    "composerIcon": "./assets/composer-icon.png",
+    "logo": "./assets/app-icon.png",
     "defaultPrompt": [
       "Use Alloy as the source of truth for this task.",
       "Find the relevant Alloy knowledge before answering.",
