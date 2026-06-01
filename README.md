@@ -99,8 +99,8 @@ The Claude plugin manifest at `.claude-plugin/plugin.json` references the same
 marketplace is published:
 
 ```
-/plugin marketplace add alloy-cx/marketplace
-/plugin install work-with-alloy
+/plugin marketplace add Alloy-Systems/alloy-marketplace
+/plugin install work-with-alloy@alloy-marketplace
 ```
 
 Claude Code's plugin installer clones plugin source from GitHub over SSH by
@@ -149,7 +149,7 @@ are confirmed stable.
    `.codex-plugin/plugin.json` and `.claude-plugin/plugin.json` `version`
    fields in the same commit.
 3. Cut a git tag on the merge commit: `git tag vX.Y.Z && git push origin vX.Y.Z`.
-4. Bump the corresponding `ref` field in the `alloy-cx/marketplace` repo's
+4. Bump the corresponding `ref` field in the `Alloy-Systems/alloy-marketplace` repo's
    `marketplace.json` entry for `work-with-alloy`. Users receive the new
    version through `/plugin update` only after this marketplace bump.
 5. Untagged commits on `main` are visible to anyone reading the repo but are
