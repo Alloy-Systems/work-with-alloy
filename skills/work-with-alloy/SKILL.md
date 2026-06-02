@@ -24,13 +24,14 @@ If Alloy MCP tools are not available in the current session:
 ## Core rules
 
 1. **Read Alloy first.** Before answering from training or local memory, read relevant Alloy knowledge and prior artifacts. Read fresh — do not rely on stale recollection.
-2. **Durable knowledge goes to Alloy, not local memory.** Anything you would normally save to local agent memory — user facts, feedback rules, project context, references — write to the appropriate Alloy `knowledge.md` (organization, area, user, or agent) instead. The only thing kept locally is `alloy_username`.
+2. **Durable knowledge goes to Alloy, not local memory.** Anything you would normally save to local agent memory — user facts, feedback rules, project context, references — write to the appropriate Alloy `knowledge.md` (organization, area, user, or agent) instead. The only local bootstrap exceptions are `alloy_username` and the org task tracker identity.
 3. **Log every artifact.** After creating or meaningfully updating an Alloy doc, append a one-line entry to `/Personal/<alloy_username>/.artifact-log/artifact-log.md` per the format in `references/logs-and-inboxes.md`. Inline typo fixes do not need a log entry.
 4. **Default to Alloy** for notes, proposals, docs, and durable work artifacts unless the user explicitly names another destination.
 5. **Do not store secrets in Alloy docs.**
 6. **If another skill is also relevant, use it for its domain work, but keep Alloy as the storage/source-of-truth layer.**
 7. **Ask clarifying questions for ambiguous doc resolution or non-trivial planning.**
 8. **When you create or update something**: tell the user what changed; for Alloy entities include the entity URL; for Storage documents include the exact path and full Cowork link; note if you created a new version instead of editing inline.
+9. **Track deliverable work as a task.** Anything that produces or changes a durable deliverable — a doc, deck, playbook, note, code/bugfix — gets a task in the org task tracker (via Alloy MCP), created when you start and marked done when finished. Ephemeral questions and one-shot external-system actions do not. See "Task tracking" below.
 
 ## Loophole guard: knowledge belongs in Alloy
 
@@ -55,6 +56,17 @@ Rule 2 collides with how some host agents default to handling memory. The most c
 - Thinking "this fact is small enough to skip Alloy"
 
 All of these mean: write the note to the appropriate Alloy `knowledge.md` and update its directory note.
+
+## Task tracking
+
+Most requests are one of two kinds. Decide which, then act:
+
+1. **Ephemeral question** — "How do I do X?", "What's our pricing?", a chat-only research answer with no saved artifact. **Answer in chat. No task.**
+2. **Deliverable work** — work that produces or changes a durable deliverable we own (doc, deck, playbook, note, code/bugfix). **Create a task in the org task tracker**, created when you start and marked done when finished.
+
+**The dividing line:** does the request produce or modify a durable deliverable we own? If yes → task. If it's just answering, or executing a one-shot change in an external system (create a lead in Attio, send an email, add a calendar event) → no task. When genuinely unsure, ask.
+
+For tracker discovery, lifecycle, follow-up handling, and worked examples, read `references/task-tracking.md` before creating or updating a task.
 
 ## Quick Reference
 
@@ -123,6 +135,8 @@ Read `references/workflows.md` when building the logic of a workflow or skill �
 
 Read `references/multi-agent.md` when coordinating multiple agents — delegating to another Teammate or calling one's skill ad-hoc.
 
+Read `references/task-tracking.md` before creating or updating a task in the org task tracker.
+
 Read `references/logs-and-inboxes.md` before updating the ideas inbox, artifact
 log, or review log.
 
@@ -158,15 +172,19 @@ By default, prefer Alloy MCP for external system access. If a system like Linear
 
 ## Local preferences
 
-Persist the user's exact Alloy username in local skill/app memory or another
-durable non-secret config. This is critical because personal storage paths and
-many workflows depend on the exact username.
+Persist the user's exact Alloy username and the org task tracker identity in
+the host's global agent-instructions/config file (`CLAUDE.md`, `AGENTS.md`,
+`GEMINI.md`, or equivalent). These are bootstrap exceptions: the username is
+needed for personal storage paths, and the task tracker identity is needed
+before task-tracker discovery can work reliably.
 
-Store the username itself, not only derived paths:
+Store the username itself, not only derived paths; store the tracker identity as
+the product/system name, not a single issue URL:
 
 ```json
 {
-  "alloy_username": "<exact Alloy username>"
+  "alloy_username": "<exact Alloy username>",
+  "task_tracker": "<Linear | Jira | other connected tracker>"
 }
 ```
 
