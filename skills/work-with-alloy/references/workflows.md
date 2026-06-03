@@ -73,10 +73,20 @@ Reference variables with `{{source.path}}`. Always include a path after the sour
 - `{{output.field}}` — the current step's own result; only valid inside `saveToState`.
 - `{{VARIABLE_NAME}}` — organization-level variables (API keys, secrets, config). No dot prefix. Managed in org settings, never hard-coded.
 
+## Parent/child flows
+
+Treat `run_workflow` as an explicit contract boundary.
+
+- Pass values the child needs through the child workflow's payload mapping. Do not assume a child can see arbitrary parent step outputs unless you mapped them into the child payload or intentionally stored them in shared `state`.
+- Use `state` for values that must survive across non-adjacent steps or be reused in several places. Use child payload for one-off inputs to that child.
+- After the child workflow finishes, the parent resumes with the child's result. The next parent step reads that result through `{{input.*}}`.
+- If the child depends on shared `state`, define compatible state keys intentionally in the child workflow. Avoid relying on undeclared or accidental state shape.
+
 ## Key gotchas
 
 - **`run_code` is a template, not a live script.** Placeholders `{{var}}` are string-replaced with actual values *before* execution. `inputs.get()` does not work — use placeholders directly. Quote strings (`name = "{{input.name}}"`), don't quote numbers/booleans (`count = {{input.count}}`).
 - **`run_code` returns its last expression** (Jupyter-style) — do not use `return`. Put the result on the last line. For if/else, assign to a variable and put that variable on the last line.
 - **`{{input.*}}` only resolves from the direct predecessor.** To use data from further back, save it to state.
 - **Condition branches that merge** must share the input field they reference — it has to exist in every predecessor's output schema.
+- **Child workflows do not erase the need for explicit data flow.** If a child needs parent data, pass it in payload or save it in `state` on purpose. If the parent needs the child's result later, save it to `state` after the child returns instead of assuming it will remain available several steps later.
 - **Org workflows are `structured` type.** The structured palette cannot publish an Alloy AI (full agent) node; use `run_employee` for agent work. `mapping` and `wait_callback` step types exist in old type definitions but are not runnable — do not use them.
