@@ -8,7 +8,7 @@ Start free at [alloy.cx](https://alloy.cx) · Docs: [alloy.cx/docs](https://allo
 
 ---
 
-This plugin teaches any AI agent to use Alloy as its source of truth — reading shared knowledge before answering, writing durable notes and artifacts, creating workflows, and spawning autonomous agents.
+This plugin teaches any AI agent to use Alloy as its source of truth and gives it reusable Alloy-specific operating skills — reading shared knowledge before answering, writing durable notes and artifacts, creating workflows, running operational reviews, and spawning autonomous agents.
 
 The shared source of truth is the `work-with-alloy` skill. Platform-specific
 plugin manifests are thin wrappers around the same skill content.
@@ -41,19 +41,20 @@ agents.
 
 ## Layout
 
-- `skills/work-with-alloy/` - shared skill source.
-- `skills/work-with-alloy/references/` - supporting playbooks loaded by the skill.
-- `skills/work-with-alloy/agents/openai.yaml` - Codex/OpenAI skill UI metadata.
-- `skills/work-with-alloy/assets/` - skill UI assets such as the Alloy icon.
+- `skills/work-with-alloy/` - core source-of-truth skill.
+- `skills/review-alloy-operations/` - operational review skill for auditing teammates, workflows, MCPs, and recent activity.
+- `skills/*/references/` - supporting playbooks loaded by each skill.
+- `skills/*/agents/openai.yaml` - Codex/OpenAI skill UI metadata.
+- `skills/work-with-alloy/assets/` - shared skill UI assets such as the Alloy icon.
 - `.codex-plugin/plugin.json` - Codex plugin manifest.
 - `.claude-plugin/plugin.json` - Claude Code plugin manifest.
 - `.mcp.json` - Alloy hosted MCP configuration using `ALLOY_TOKEN`.
 
 ## Shared Skill
 
-`skills/work-with-alloy/SKILL.md` and its `references/` folder are intended to
-stay host-neutral. Update this shared skill instead of maintaining separate
-Claude and Codex instruction trees.
+The skills under `skills/` are intended to stay host-neutral. Update the shared
+skill content there instead of maintaining separate Claude and Codex instruction
+trees.
 
 ## Prerequisites
 
