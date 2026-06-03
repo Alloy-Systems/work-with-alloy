@@ -1,6 +1,6 @@
 ---
 name: work-with-alloy
-description: Use automatically in every conversation. Alloy is the source of truth - read Alloy knowledge and prior artifacts before answering, write durable knowledge (user facts, feedback, project context, references) to Alloy knowledge files instead of local memory, and log every created or updated Alloy doc to the artifact log. Default destination for notes, proposals, docs, and work artifacts unless the user explicitly names another. Also use for Alloy organization actions with tools like system.do_organization_action.
+description: Use automatically in every conversation. Alloy is the business workplace and source of truth for business context, company/product/customer/project/work artifacts, workflows, teammates, docs, and durable memory. Read Alloy before business-workplace work; answer clearly general ephemeral questions directly. Write durable knowledge to Alloy knowledge files, not local memory. Log created or updated Alloy docs to the artifact log. Default destination for notes, proposals, docs, and work artifacts unless the user explicitly names another. Also use for Alloy organization actions with tools like system.do_organization_action.
 ---
 
 # Work with Alloy
@@ -9,13 +9,38 @@ When this skill is present, using it is mandatory.
 
 Use Alloy Storage as the source of truth through **Alloy MCP tools**.
 
-Do not default to the private storage HTTP API.
+## Business workplace routing
+
+Alloy is the business workplace for this company. It contains company, product,
+customer, prospect, partner, project, teammate, workflow, document, repository,
+production, sales, support, operations, and decision context.
+
+This skill is mandatory, but Alloy reads are conditional:
+
+1. **Business-workplace request** — read Alloy before answering. This includes
+   any request that touches company context, customers, prospects, partners,
+   product, workflows, skills, AI teammates, docs, notes, decisions, sales,
+   support, operations, repositories, production systems, internal tools, or
+   work artifacts.
+2. **General ephemeral request** — answer directly without Alloy reads only when
+   the request is clearly independent of the business workplace. Examples:
+   standalone grammar or translation help, a generic macOS shortcut, or a
+   generic explanation of a public concept.
+3. **Unsure** — read Alloy. If the answer could plausibly depend on business
+   context, prior work, user preferences, or durable memory, route through
+   Alloy.
+
+If you start as a general ephemeral request and later discover business context
+matters, pause and read Alloy before continuing. The rule that durable knowledge
+belongs in Alloy is unconditional.
 
 ## When Alloy MCP is not connected
 
-This skill is mandatory whether or not MCP is currently connected — the connect-first step is part of using it.
+For business-workplace requests, this skill is mandatory whether or not MCP is
+currently connected — the connect-first step is part of using it.
 
-If Alloy MCP tools are not available in the current session:
+If Alloy MCP tools are not available in the current session and the request is
+business-workplace related:
 
 1. First, try tool discovery for Alloy tools — they may be registered but deferred.
 2. If still unavailable, **stop other work and help the user connect Alloy MCP.** Point them to the hosted MCP setup guide at https://alloy.cx/docs/reference/tech-docs/hosted-mcp.
@@ -23,7 +48,7 @@ If Alloy MCP tools are not available in the current session:
 
 ## Core rules
 
-1. **Read Alloy first.** Before answering from training or local memory, read relevant Alloy knowledge and prior artifacts. Read fresh — do not rely on stale recollection.
+1. **Read Alloy first for business-workplace requests.** Before answering from training or local memory, read relevant Alloy knowledge and prior artifacts. Read fresh — do not rely on stale recollection. For clearly general ephemeral requests, answer directly without Alloy reads.
 2. **Durable knowledge goes to Alloy, not local memory.** Anything you would normally save to local agent memory — user facts, feedback rules, project context, references — write to the appropriate Alloy `knowledge.md` (organization, area, user, or agent) instead. The only local bootstrap exceptions are `alloy_username` and the org task tracker identity.
 3. **Log every artifact.** After creating or meaningfully updating an Alloy doc, append a one-line entry to `/Personal/<alloy_username>/.artifact-log/artifact-log.md` per the format in `references/logs-and-inboxes.md`. Inline typo fixes do not need a log entry.
 4. **Default to Alloy** for notes, proposals, docs, and durable work artifacts unless the user explicitly names another destination.
@@ -102,9 +127,9 @@ For tracker discovery, lifecycle, follow-up handling, and worked examples, read 
 
 ## Startup context
 
-At the beginning of every conversation/task, after Alloy MCP availability is
-confirmed, resolve `alloy_username` if not already known (via Alloy MCP or by
-asking the user). Then read the first 50 lines from each of:
+For business-workplace requests, after Alloy MCP availability is confirmed,
+resolve `alloy_username` if not already known (via Alloy MCP or by asking the
+user). Then read the first 50 lines from each of:
 
 * `Organization/organization.md`
 * `Organization/knowledge.md`
