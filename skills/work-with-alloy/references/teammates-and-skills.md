@@ -1,6 +1,6 @@
-# Teammates and Skills
+# AI Teammates (Agents) and Skills
 
-## Add a New Teammate
+## Add a New AI Teammate
 
 If the user did not provide any information about the role of the new Teammate, ask about it. Otherwise proceed with the user's information and do not ask extra questions.
 
@@ -10,11 +10,16 @@ Read canonical Teammate profiles in Alloy documentation path `/tech docs/Teammat
 
 Defaults: LLM `Sonnet 4.5`, TTS `tts-1`, STT `gpt-4o-transcribe`, voice `alloy`.
 
-Storage write access requires read access as well.
+Storage write access requires read access as well - so add both when the user asks for write access.
 
-After building, tell the user instructions and settings need correct data and help them fill it.
 
-If the Teammate's instructions get long, move them into a separate `.md` note in Alloy Storage and reference that note from the instructions instead of inlining everything. The folder holding that note must be shared with the Teammate, or it cannot read it — sharing it is a must.
+## Tweak AI Teammate Instructions
+
+If the Teammate's instructions get long (more than about 800 chars), move them into a separate `.md` note in Alloy Storage and reference that note from the instructions instead of inlining everything. The folder holding that note must be shared with the Teammate, or it cannot read it — sharing it is a must.
+
+After tweaking, stress test it with the AI Teammate. Try it and see how well it follows the instructions and what edge cases appear.
+
+Also, advise on the LLM that is a better fit for these instructions - based on your general knowledge.
 
 ## Add a Webchat Widget
 
@@ -36,8 +41,6 @@ If a built-in tool can perform the requested function, suggest adding the tool i
 
 Check Alloy documentation for existing blueprints and use them when available.
 
-Confirm whether the skill should be structured or agent-based. Recommend structured skills unless smart multi-turn action is needed.
-
 Suggest skill inputs/outputs and ask for confirmation.
 
 If the skill requires an API key, ask the user to add a variable with the key. Tell them not to post the API key into chat.
@@ -48,7 +51,7 @@ Build skills failsafe: if something unexpected happens, the skill should return 
 
 Add a skill description explaining how to use it. The description and input schema are the only things the Teammate will know about this skill.
 
-For structured skills, cap output provided to the agent. Unless instructed otherwise, use a 30,000 character total output cap.
+For structured skills, cap output provided to the agent. Unless instructed otherwise, use a 10,000 character total output cap.
 
 If the skill accepts arbitrary text, handle quotes, JSON, and multiline content safely.
 

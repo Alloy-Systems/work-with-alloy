@@ -26,6 +26,10 @@ For non-trivial workflows, preview the design before building. If the user alrea
 4. **Build.** Only after the user approves the design.
 5. **Test & troubleshoot.** Run via the workflow/skill test tool discovered via Alloy MCP, fix failures, retest. Return to the user when it works or when you need an action from them.
 
+## Flow size
+
+Keep each workflow's `flow` JSON around **10,000 characters or less**. If the flow requires more, split it into chained flows or child flows by responsibility, phase, or decision branch. This improves debuggability, maintainability, and partial changes.
+
 ## Choosing the step type — the central trade-off
 
 **Default to deterministic.** Code, tool calls, and conditions are cheaper, faster, more reliable, and predictable. The more of the workflow you can cover deterministically, the better. Start here and only reach for an LLM or agent step when there is a concrete reason.

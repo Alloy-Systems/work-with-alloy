@@ -6,7 +6,7 @@ Read this before creating or updating a task in the org task tracker. The trigge
 
 The org's task tracker may be Linear, Jira, or a homegrown system, reached through the connected `mcp__alloy__<System>__*` tools.
 
-**If you don't already know which tracker the org uses, ask the user once**, then persist the answer for future sessions using the Local preferences rule in `SKILL.md`.
+**If you don't already know which tracker the org uses, ask the user once**, then persist the answer for future sessions.
 
 If no tracker is connected via Alloy MCP, flag it to the user to connect in Alloy settings rather than wiring up a direct integration yourself.
 
