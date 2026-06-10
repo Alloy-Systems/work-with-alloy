@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "cx.alloy/alloy",
+  "title": "Alloy",
+  "description": "AI workspace — shared knowledge, skills, and tools for AI agents",
+  "version": "1.0.0",
+  "websiteUrl": "https://alloy.cx",
+  "repository": {
+    "url": "https://github.com/Alloy-Systems/work-with-alloy",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.alloy.cx/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer token from your Alloy AI teammate's PATs tab (format: Bearer <token>)",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

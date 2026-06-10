@@ -1,3 +1,5 @@
+<!-- mcp-name: cx.alloy/alloy -->
+
 # Work with Alloy
 
 ## About Alloy
