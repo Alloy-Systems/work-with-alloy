@@ -82,6 +82,16 @@ Treat `run_workflow` as an explicit contract boundary.
 - After the child workflow finishes, the parent resumes with the child's result. The next parent step reads that result through `{{input.*}}`.
 - If the child depends on shared `state`, define compatible state keys intentionally in the child workflow. Avoid relying on undeclared or accidental state shape.
 
+## Storage access from workflows
+
+When a workflow needs to read from or write to Alloy Storage and there is no direct Storage step available in the workflow builder, use the Alloy private Storage API.
+
+- Use `run_code` or `http.http_request` to call `{api_url}/api/private/storage`.
+- Authenticate with the organization private Alloy API key in the `api-key` header.
+- Keep the API key in an organization variable, never hard-code it in the workflow or prompt. If the key is not already available as a variable, ask the user to add it before building the workflow.
+- Use the private Storage API for file/folder operations such as listing folders, uploading files, reading metadata, downloading files, deleting files or folders, creating folders, renaming, and moving.
+- For exact route shapes, look up the current Alloy documentation, especially `private-api.md` and `storage.md`.
+
 ## Key gotchas
 
 - **`run_code` is a template, not a live script.** Placeholders `{{var}}` are string-replaced with actual values *before* execution. `inputs.get()` does not work — use placeholders directly. Quote strings (`name = "{{input.name}}"`), don't quote numbers/booleans (`count = {{input.count}}`).
