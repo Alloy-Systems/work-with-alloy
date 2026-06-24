@@ -55,7 +55,7 @@ business-workplace related:
 5. **Do not store secrets in Alloy docs.**
 6. **If another skill is also relevant, use it for its domain work, but keep Alloy as the storage/source-of-truth layer.**
 7. **Ask clarifying questions for ambiguous doc resolution or non-trivial planning.**
-8. **When you create or update something**: tell the user what changed; for Alloy entities include the entity URL; for Storage documents include the exact path and full Cowork link; note if you created a new version instead of editing inline.
+8. **When you create or update something**: tell the user what changed; for Alloy entities include the entity URL; for Storage documents include the exact path and full Docs link; note if you created a new version instead of editing inline.
 9. **Track deliverable work as a task.** Anything that produces or changes a durable deliverable — a doc, deck, playbook, note, code/bugfix — gets a task in the org task tracker (via Alloy MCP), created when you start and marked done when finished. Ephemeral questions and one-shot external-system actions do not. See "Task tracking" below.
 
 ## Loophole guard: knowledge belongs in Alloy
@@ -112,7 +112,7 @@ For tracker discovery, lifecycle, follow-up handling, and worked examples, read 
 
 | Target | Shape |
 |--------|-------|
-| Storage doc or folder | `https://app.alloy.cx/cowork?path=/<storage_path>` (leading slash required; URL-encode spaces as `%20` and other RFC 3986 reserved chars) |
+| Storage doc or folder | `https://app.alloy.cx/docs?path=/<storage_path>` (leading slash required; URL-encode spaces as `%20` and other RFC 3986 reserved chars) |
 | AI Teammate | `https://app.alloy.cx/staff/ai/<uuid>` |
 | Other entities (Workflow, Skill, etc.) | Look up the exact shape via Alloy MCP documentation tools |
 
@@ -175,7 +175,7 @@ Write or update a knowledge note when the user asks, or when you notice somethin
 
 ## Documents and Storage
 
-Our work happens in Alloy Storage. When the user asks you to write a note or proposal, find a relevant subfolder or file for the conversation. If no relevant subfolder exists, or you are not sure which one fits, create a new folder for the note and give the user the Cowork link.
+Our work happens in Alloy Storage. When the user asks you to write a note or proposal, find a relevant subfolder or file for the conversation. If no relevant subfolder exists, or you are not sure which one fits, create a new folder for the note and give the user the Docs link.
 
 If a note does not clearly belong to the existing folder structure, put it in `Personal/<alloy_username>/`.
 
@@ -225,12 +225,12 @@ Derive personal paths from `alloy_username` when needed, for example
 * keep notes in the most relevant existing folder; if unclear, use the user’s personal folder
 * do not crawl the whole org unless the user clearly wants that
 
-## Cowork links
+## Docs links
 
 When linking to an Alloy document, use this shape:
 
 ```text
-https://app.alloy.cx/cowork?path=<storage_path>
+https://app.alloy.cx/docs?path=<storage_path>
 ```
 
 Rules:
@@ -238,7 +238,7 @@ Rules:
 * include the leading slash in the `path` query value
 * **URL-encode** spaces and other special characters in the `path` value. Spaces become `%20`; other reserved characters per RFC 3986 (`?`, `#`, `&`, `+`, etc.) must also be encoded if they appear in folder or file names.
   * Example: `/Personal/Artem Burachenok/Notes/file.md` → `?path=/Personal/Artem%20Burachenok/Notes/file.md`
-* after any create, move, rename, copy, or update, provide both the exact Alloy path (unencoded, for human reading) and the full Cowork link (encoded, ready to click)
+* after any create, move, rename, copy, or update, provide both the exact Alloy path (unencoded, for human reading) and the full Docs link (encoded, ready to click)
 
 ## Logs and inboxes
 
