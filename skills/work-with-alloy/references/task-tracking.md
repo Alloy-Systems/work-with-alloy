@@ -1,18 +1,31 @@
 # Task Tracking
 
-Read this before creating or updating a task in the org task tracker. The trigger and decision boundary live inline in SKILL.md ("Task tracking"); the mechanics are here.
+Read this before creating or updating a task only when host instructions set
+`task_tracking: enabled` or the user directly requests a tracker action. If
+neither condition applies, silently skip task tracking and do not load this
+playbook. The gate and decision boundary live inline in SKILL.md ("Task
+tracking"); the mechanics are here.
 
 ## Which tracker
 
 The org's task tracker may be Linear, Jira, or a homegrown system, reached through the connected `mcp__alloy__<System>__*` tools.
 
-**If you don't already know which tracker the org uses, ask the user once**, then persist the answer for future sessions.
+When the standing policy is enabled and the tracker is unknown, ask the user
+once, then persist the tracker identity for future sessions. For a direct
+one-off request without a standing policy, ask only for information needed to
+complete that action; do not enable or persist task tracking unless the user
+asks.
 
-If no tracker is connected via Alloy MCP, flag it to the user to connect in Alloy settings rather than wiring up a direct integration yourself.
+If an enabled policy or direct request requires a tracker that is not connected
+via Alloy MCP, flag it to the user to connect in Alloy settings rather than
+wiring up a direct integration yourself.
 
-## Lifecycle
+## Standing-policy lifecycle
 
-Create the task **when you start** the work (status Todo / In Progress, assigned to the user unless told otherwise), update it as it progresses, and **mark it Done when finished**.
+When task tracking is enabled, create the task **when you start** the work
+(status Todo / In Progress, assigned to the user unless told otherwise), update
+it as it progresses, and **mark it Done when finished**. For a direct tracker
+request without a standing policy, perform only the requested action.
 
 Follow the org's existing conventions — before creating the first task in a session, look at recent issues in the tracker to match team/project, assignee, status names, and title style.
 
@@ -23,6 +36,9 @@ Don't leave a finished task stale. If the user asks for more work on something t
 Open a *new* task only when the follow-on is substantial and independent enough to stand on its own.
 
 ## Is it a task?
+
+Use this table only when `task_tracking: enabled`. A direct request to create or
+update a task is in scope by definition but does not enable the standing policy.
 
 | Request | Task? | Why |
 |---------|-------|-----|

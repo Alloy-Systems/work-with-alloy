@@ -1,7 +1,7 @@
 interface:
   display_name: "Review Alloy Operations"
   short_description: "Audit Alloy teammates, workflows, MCPs, and recent operational activity."
-  icon_small: "../work-with-alloy/assets/alloy-color.svg"
+  icon_small: "./assets/alloy-color.svg"
   brand_color: "#111827"
   default_prompt: "Use $work-with-alloy and $review-alloy-operations to audit Alloy operational setup, recent runs, and optimization opportunities."
 policy:
