@@ -1,19 +1,19 @@
 ---
 name: review-alloy-operations
-description: Use when reviewing Alloy operational setup, teammates, workflows, MCP assignments, or recent activity over a time range; especially for org audits, configuration reviews, run-log analysis, and optimization recommendations.
+description: Use when reviewing Alloy operational setup, teammates, instruction skills, workflows, MCP assignments, or recent activity over a time range; especially for org audits, configuration reviews, run-log analysis, and optimization recommendations.
 ---
 
 # Review Alloy Operations
 
 Use this skill together with `work-with-alloy`.
 
-This skill is for operational reviews of an Alloy org: teammates, workflows, MCP setup, recent activity, run evidence, and optimization opportunities.
+This skill is for operational reviews of an Alloy org: teammates, instruction skills, workflows, MCP setup, recent activity, run evidence, and optimization opportunities.
 
 ## When to Use
 
 Use this when the user wants any of the following:
 
-- an org audit of AI teammates, workflows, or MCPs
+- an org audit of AI teammates, instruction skills, workflows, or MCPs
 - a review of what happened over a date range
 - a review of teammate or workflow configuration quality
 - a review of run logs or operational patterns
@@ -25,7 +25,8 @@ Do not use this for normal one-off teammate creation, small workflow edits, or o
 
 Before starting, read:
 
-- `../work-with-alloy/references/teammates-and-skills.md`
+- `../work-with-alloy/references/teammates-and-workflows.md`
+- `../work-with-alloy/references/skills.md` when reviewing shared instruction skills
 - `../work-with-alloy/references/workflows.md`
 - `../work-with-alloy/references/multi-agent.md` when delegation is needed
 - `references/operational-review-pattern.md`
@@ -43,7 +44,7 @@ If the user does not specify, ask which they want.
 
 If subset review, clarify the minimum needed scope:
 
-- which teammates, workflows, MCPs, or areas
+- which teammates, instruction skills, workflows, MCPs, or areas
 - date range
 - whether the focus is configuration, run evidence, optimization, or all of them
 
@@ -54,11 +55,12 @@ If subset review, clarify the minimum needed scope:
    - exact objects and date range when the scope is partial
 2. Build the audit surface:
    - active AI teammates only
-   - current org workflows only
+   - current org and teammate-assigned workflows
+   - shared instruction skills under `.skills` when they are in scope
    - MCP servers
 3. Exclude soft-deleted objects.
-4. Treat `system_workflows_list` only as a candidate list; verify current org workflows by ownership (`employee_id = null`) and existence/readability, and reconcile with the UI when needed.
-5. If the task is broad and subagents are available, fan out one subagent per teammate/workflow. Keep each subagent narrow and require it to write its note before returning.
+4. Treat workflow-list results only as candidates. Verify existence, readability, and ownership: `employee_id = null` means organization-owned; a populated `employee_id` means teammate-assigned. Reconcile with the UI when needed.
+5. If the task is broad and subagents are available, fan out one subagent per teammate, workflow, or instruction skill in scope. Keep each subagent narrow and require it to write its note before returning.
 6. Review runs selectively. Start with run lists, then inspect only failed, high-volume, suspicious, long-running, or representative successful runs.
 7. Exclude clear internal testing from production conclusions, but still note real config or safety issues exposed by those runs.
 8. Synthesize both:

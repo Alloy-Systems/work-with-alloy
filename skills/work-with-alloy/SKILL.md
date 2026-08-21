@@ -1,6 +1,6 @@
 ---
 name: work-with-alloy
-description: Use automatically in every conversation. Alloy is the business workplace and source of truth for business context, company/product/customer/project/work artifacts, workflows, teammates, docs, and durable memory. Read Alloy before business-workplace work; answer clearly general ephemeral questions directly. Write durable knowledge to Alloy knowledge files, not local memory. Log created or updated Alloy docs to the artifact log. Default destination for notes, proposals, docs, and work artifacts unless the user explicitly names another. Also use for Alloy organization actions with tools like system.do_organization_action.
+description: Use automatically in every conversation. Alloy is the business workplace and source of truth for business context, company/product/customer/project/work artifacts, workflows, teammates, docs, and durable memory. Read Alloy before business-workplace work; answer clearly general ephemeral questions directly. Write durable knowledge to Alloy knowledge files, not local memory. Log created or updated Alloy docs to the artifact log. Default destination for notes, proposals, docs, and work artifacts unless the user explicitly names another. Also use for Alloy organization actions through the currently available Alloy MCP tools.
 ---
 
 # Work with Alloy
@@ -120,7 +120,7 @@ When task tracking is enabled, or the user directly requests a tracker action, r
 |--------|-------|
 | Storage doc or folder | `https://app.alloy.cx/docs?path=/<storage_path>` (leading slash required; URL-encode spaces as `%20` and other RFC 3986 reserved chars) |
 | AI Teammate | `https://app.alloy.cx/staff/ai/<uuid>` |
-| Other entities (Workflow, Skill, etc.) | Look up the exact shape via Alloy MCP documentation tools |
+| Other entities (Workflow, AI Teammate, etc.) | Look up the exact shape via Alloy MCP documentation tools |
 
 ### Document versioning
 
@@ -160,11 +160,13 @@ do not suggest again if they decline.
 
 Read `references/troubleshooting.md` before troubleshooting a problem.
 
-Read `references/teammates-and-skills.md` when creating or configuring a Teammate — new, copy, webchat widget, or attaching a skill.
+Read `references/teammates-and-workflows.md` when creating or configuring a Teammate — new, copy, webchat widget, or attaching a workflow.
 
-Read `references/workflows.md` when building the logic of a workflow or skill — designing the step graph and choosing deterministic vs. LLM vs. agent steps.
+Read `references/workflows.md` when building workflow logic — designing the step graph and choosing deterministic, LLM, or agent steps.
 
-Read `references/multi-agent.md` when coordinating multiple agents — delegating to another Teammate or calling one's skill ad-hoc.
+Read `references/skills.md` when creating, updating, sharing, or testing a reusable instruction skill stored under `.skills`.
+
+Read `references/multi-agent.md` when coordinating multiple agents — delegating to another Teammate or calling one of its workflows ad hoc.
 
 Read `references/task-tracking.md` only when task tracking is explicitly enabled or the user directly requests a tracker action.
 
@@ -193,7 +195,8 @@ Prefer the `mcp__alloy__` tools. Tool names may change, so discover the current 
 
 * **Storage** - organization/user files, notes, artifacts, images, search, metadata, temporary file URLs, and file operations.
 * **Documentation** - shared Alloy/system documentation listing, reading, and semantic search.
-* **System skills and workflows** — manage Teammate skills and build workflows. Workflows serve two purposes: multi-agent orchestration (see `references/multi-agent.md`) and standalone automation — running code, calling external APIs, and moving data between systems without an agent in the loop.
+* **Storage-managed skills** — create reusable instruction packages under `.skills` and share their folders with AI teammates. Skills are files, not workflow entities; see `references/skills.md`.
+* **System workflows** — build and manage organization-owned or teammate-assigned executable workflows. Workflows serve two purposes: multi-agent orchestration (see `references/multi-agent.md`) and standalone automation — running code, calling external APIs, and moving data between systems without an agent in the loop.
 * **System administration** — manage the full Alloy organization: create and configure AI Teammates, set up MCP connections, build workflows, change settings, issue invites, and perform other org-level actions. An agent can do anything a human admin can within its access rights.
 * **External systems** - connected external systems are exposed through Alloy MCP as well, for example Linear, GitHub, Fireflies, DocuSeal, Higgsfield, and other integrations available in the current organization.
 

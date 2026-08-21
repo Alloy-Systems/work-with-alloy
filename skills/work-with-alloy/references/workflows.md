@@ -24,11 +24,11 @@ For non-trivial workflows, preview the design before building. If the user alrea
 2. **Design.** Choose step types using the decision logic below.
 3. **Preview.** Present the proposed design to the user with trade-offs — the pros and cons of the key choices (especially deterministic vs. agent steps). For non-trivial workflows, get approval before building.
 4. **Build.** Only after the user approves the design.
-5. **Test & troubleshoot.** Run via the workflow/skill test tool discovered via Alloy MCP, fix failures, retest. Return to the user when it works or when you need an action from them.
+5. **Test & troubleshoot.** Run via the workflow test tool discovered through Alloy MCP, fix failures, and retest. Return to the user when it works or when you need an action from them.
 
-## Flow size
+## Workflow graph size
 
-Keep each workflow's `flow` JSON around **10,000 characters or less**. If the flow requires more, split it into chained flows or child flows by responsibility, phase, or decision branch. This improves debuggability, maintainability, and partial changes.
+Keep each workflow's `flow` JSON around **10,000 characters or less**. If the workflow graph requires more, split it into chained workflows or child workflows by responsibility, phase, or decision branch. This improves debuggability, maintainability, and partial changes.
 
 ## Choosing the step type — the central trade-off
 
@@ -73,7 +73,7 @@ Reference variables with `{{source.path}}`. Always include a path after the sour
 - `{{output.field}}` — the current step's own result; only valid inside `saveToState`.
 - `{{VARIABLE_NAME}}` — organization-level variables (API keys, secrets, config). No dot prefix. Managed in org settings, never hard-coded.
 
-## Parent/child flows
+## Parent and child workflows
 
 Treat `run_workflow` as an explicit contract boundary.
 

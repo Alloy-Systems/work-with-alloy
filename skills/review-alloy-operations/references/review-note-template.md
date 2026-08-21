@@ -11,11 +11,22 @@
 
 - purpose:
 - prompt/setup:
-- skills or step graph:
+- shared instruction skills:
+- workflow step graph:
 - triggers/schedules/debounce/mode:
 - MCP/tool access:
 
+For an instruction skill, use these fields instead and mark workflow-only fields as not applicable:
+
+- `.skills/<name>/SKILL.md` path:
+- front matter and trigger description:
+- instruction quality:
+- references/scripts/assets:
+- teammates with read access:
+
 ## Run evidence
+
+For instruction skills, record representative teammate behavior tests instead of workflow runs.
 
 - runs found:
 - notable failures:

@@ -14,28 +14,32 @@ Be thorough. No rush.
      - a subset review
    - If the user does not specify, ask.
    - For subset reviews, pin down:
-     - exact teammates/workflows/MCPs/areas
+     - exact teammates/instruction skills/workflows/MCPs/areas
      - date range
      - whether the focus is configuration, run evidence, optimization, or all of them
 
 2. Coordinator inventory and topology
-   - Read references related to building workflows and AI teammates. Use them as best-practice baselines.
+   - Read references related to instruction skills, workflows, and AI teammates. Use them as best-practice baselines.
    - Collect the full inventory of:
      - active AI teammates only
-     - current org workflows only
+     - current organization-owned and teammate-assigned workflows
+     - shared instruction skills under `.skills` when they are in scope
      - MCP servers
    - Build a topology view:
      - which teammate owns which workflow(s)
+     - which teammates can read each instruction skill
      - which MCPs are assigned to which teammates
      - which workflows are org-level vs teammate-level
      - which objects were active in the target date range
    - Exclude soft-deleted objects from the audit surface:
      - teammates: explicitly check the soft-deleted teammate list and keep them out
-     - workflows: use `system_workflows_list` only as a candidate list, then verify current org workflows by ownership (`employee_id = null`) and existence/readability; reconcile with the UI when needed
+     - workflows: treat list results only as candidates, then verify existence, readability, and ownership; `employee_id = null` means organization-owned and a populated `employee_id` means teammate-assigned
+     - instruction skills: verify the `.skills/<name>/SKILL.md` package, supporting files, and effective teammate read access
 
 3. One subagent per object
    - Spawn one subagent per AI teammate.
    - Spawn one subagent per workflow.
+   - Spawn one subagent per instruction skill when skills are in scope.
    - Each subagent stays narrow and reviews only its assigned object.
    - Make them read relevant reference notes when needed.
    - Require every subagent to write its findings into the shared review folder before returning.
@@ -47,10 +51,12 @@ Be thorough. No rush.
      - owner/scope
    - Configuration:
      - prompt/setup
-     - attached skills
+     - attached workflows
+     - shared instruction skills when relevant
      - workflow graph / step structure
      - triggers / schedules / debounce / mode
      - MCP and tool access
+     - for instruction skills: `SKILL.md` front matter, instructions, references, scripts, assets, and teammate access
    - Operational evidence:
      - run list during target date range
      - failures

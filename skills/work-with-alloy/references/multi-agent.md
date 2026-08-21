@@ -8,14 +8,14 @@ Use the employee/list Teammates tool discovered via Alloy MCP to get all Alloy A
 
 ## Delegating from a workflow
 
-Inside a workflow, the `run_employee` ("Assign AI") step delegates a chunk of work to a specific Teammate, suspends until it finishes, then resumes with its output. Use this for orchestrated, multi-step processes. For the step's parameters and how it fits the rest of the flow, see `references/workflows.md`.
+Inside a workflow, the `run_employee` ("Assign AI") step delegates a chunk of work to a specific Teammate, suspends until it finishes, then resumes with its output. Use this for orchestrated, multi-step processes. For the step's parameters and how it fits the rest of the workflow, see `references/workflows.md`.
 
-## Calling a Teammate's skill ad-hoc (via MCP)
+## Calling a teammate's workflow ad hoc through MCP
 
-Alloy Teammates with skills may expose those skills directly as MCP tools. They appear in the deferred tool list alongside other `mcp__alloy__*` tools. Call them like any other MCP tool — no workflow needed.
+Alloy teammates with assigned workflows may expose those workflows directly as MCP tools. They appear in the deferred tool list alongside other `mcp__alloy__*` tools. Call them like any other MCP tool.
 
 Use this when you need a one-off result from a Teammate's capability mid-conversation, without building a full workflow.
 
 ## Continuing from a Teammate's output
 
-After a `run_employee` step or an ad-hoc skill call, the Teammate's output and any artifacts it wrote to Storage are immediately available. Read relevant Storage paths to pick up where the Teammate left off before continuing your own work.
+After a `run_employee` step or an ad hoc workflow call, the teammate's output and any artifacts it wrote to Storage are immediately available. Read relevant Storage paths to pick up where the teammate left off before continuing your own work.

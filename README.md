@@ -34,7 +34,7 @@ agents.
   and private gateways.
 - Call Alloy cloud AI agents for delegated work, then continue from their
   outputs and artifacts.
-- Create or configure Alloy AI teammates, skills, and workflows so repeatable
+- Create or configure Alloy AI teammates, instruction skills, and executable workflows so repeatable
   work becomes a governed organizational process.
 - Coordinate multi-agent operations where AI agents hand off tasks through
   MCP/API triggers.
@@ -44,7 +44,7 @@ agents.
 ## Layout
 
 - `skills/work-with-alloy/` - core source-of-truth skill.
-- `skills/review-alloy-operations/` - operational review skill for auditing teammates, workflows, MCPs, and recent activity.
+- `skills/review-alloy-operations/` - operational review skill for auditing teammates, instruction skills, workflows, MCPs, and recent activity.
 - `skills/*/references/` - supporting playbooks loaded by each skill.
 - `skills/*/agents/openai.yaml` - Codex/OpenAI skill UI metadata.
 - `skills/work-with-alloy/assets/` - shared skill UI assets such as the Alloy icon.
