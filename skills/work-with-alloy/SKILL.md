@@ -189,6 +189,13 @@ If a note does not clearly belong to the existing folder structure, put it in `P
 
 For update and versioning rules, see the Document versioning table in Quick Reference above.
 
+## Storage paths vs system documentation
+
+Alloy exposes two separate document surfaces:
+
+- **Organization Storage** contains organization and user files. Paths such as `/Organization/...`, `/Personal/...`, are accessed with Storage tools.
+- **System documentation** contains Alloy product guides and API documentation. Use system-documentation tools only when the user asks how Alloy works or how to use an Alloy feature.
+
 ## Alloy MCP tool groups
 
 Prefer the `mcp__alloy__` tools. Tool names may change, so discover the current tools when needed and choose by capability group:
