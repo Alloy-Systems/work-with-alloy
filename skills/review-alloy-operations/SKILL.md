@@ -23,13 +23,15 @@ Do not use this for normal one-off teammate creation, small workflow edits, or o
 
 ## Required references
 
-Before starting, read:
+Before starting, load the relevant Alloy skills through MCP and read these system
+references with `system_read_documentation`:
 
-- `../work-with-alloy/references/teammates-and-workflows.md`
-- `../work-with-alloy/references/skills.md` when reviewing shared instruction skills
-- `../work-with-alloy/references/workflows.md`
-- `../work-with-alloy/references/multi-agent.md` when delegation is needed
-- `references/operational-review-pattern.md`
+- `Team space/tech docs/references/teammates-and-workflows.md` for teammate configuration
+- `Team space/tech docs/references/skills.md` when reviewing instruction skills
+- the `workflows` skill for workflow design and execution
+- `Team space/tech docs/references/multi-agent.md` when delegation is needed
+
+Then read the bundled `references/operational-review-pattern.md`.
 
 Use `references/review-note-template.md` for per-object notes.
 

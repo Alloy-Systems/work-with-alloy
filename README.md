@@ -10,10 +10,10 @@ Start free at [alloy.cx](https://alloy.cx) · Docs: [alloy.cx/docs](https://allo
 
 ---
 
-This plugin teaches any AI agent to use Alloy as its source of truth and gives it reusable Alloy-specific operating skills — reading shared knowledge before answering, writing durable notes and artifacts, creating workflows, running operational reviews, and spawning autonomous agents.
+This plugin orients external AI agents to Alloy and routes them to the current skills, technical references, knowledge, and business systems available through Alloy MCP. Detailed operating procedures live inside Alloy.
 
-The shared source of truth is the `work-with-alloy` skill. Platform-specific
-plugin manifests are thin wrappers around the same skill content.
+The `work-with-alloy` skill provides the shared host-neutral entry instructions.
+Platform-specific plugin manifests wrap the same skill content.
 
 ## Use Cases
 
@@ -43,9 +43,9 @@ agents.
 
 ## Layout
 
-- `skills/work-with-alloy/` - core source-of-truth skill.
+- `skills/work-with-alloy/` - connection, discovery, and workspace routing instructions.
 - `skills/review-alloy-operations/` - operational review skill for auditing teammates, instruction skills, workflows, MCPs, and recent activity.
-- `skills/*/references/` - supporting playbooks loaded by each skill.
+- `skills/review-alloy-operations/references/` - supporting material for operational reviews.
 - `skills/*/agents/openai.yaml` - Codex/OpenAI skill UI metadata.
 - `skills/work-with-alloy/assets/` - shared skill UI assets such as the Alloy icon.
 - `.codex-plugin/plugin.json` - Codex plugin manifest.
@@ -57,6 +57,24 @@ agents.
 The skills under `skills/` are intended to stay host-neutral. Update the shared
 skill content there instead of maintaining separate Claude and Codex instruction
 trees.
+
+## Procedures available through Alloy
+
+Alloy MCP supplies the connected teammate's operating instructions, available
+skills, and workspace context. The host skill directs the external agent to use
+that guidance and load the specialized skills relevant to each task. Workflows,
+databases, and websites use their own Alloy skills. Technical questions use the
+system documentation available through MCP.
+
+The connected AI Teammate record in Alloy determines which instructions and skills the external
+agent receives. Organization skills live under `.skills/` in that organization's
+Storage. System-published skills are available according to the teammate's access.
+
+For scripted or bulk Storage operations, an external agent can also use the
+Private API with a user-provided personal access token. Each PAT identifies its
+organization and uses its owner's permissions. The host skill describes when to
+use this path and points to the current API reference. Load credentials from the
+user's environment or secret store.
 
 ## Prerequisites
 
@@ -139,7 +157,7 @@ same `version` field.
 |------|---------------|----------|
 | **Patch** (`0.1.0` → `0.1.1`) | Cosmetic only. Typo, wording tweak, broken link, clarification. No change in how the agent behaves. | Fix a typo in `SKILL.md`. Update a stale URL in `references/`. |
 | **Minor** (`0.1.0` → `0.2.0`) | Backward-compatible addition. New rule, new Quick Reference row, new reference playbook, new optional manifest field. Prior usage still works. | Add a new rule to Core rules. Add a new entry to a Quick Reference table. Add a new playbook under `references/`. |
-| **Major** (`0.x` → `1.0`, `1.x` → `2.x`) | Breaking change. A canonical path, file name, required field, or required rule changes in a way that prior consumers may break. | Rename `Personal/<username>/.knowledge/knowledge.md` to a different path. Remove a Core rule. Restructure `references/` so existing links break. |
+| **Major** (`0.x` → `1.0`, `1.x` → `2.x`) | Breaking change. A canonical path, file name, required field, or required rule changes in a way that prior consumers may break. | Rename a required Alloy skill or change a required tool contract. Remove a routing rule or a bundled reference. |
 
 Pre-1.0 (`0.x`) signals "still stabilizing - minor bumps may include breaking
 changes". The `1.0.0` line will be cut when the canonical paths and Core rules

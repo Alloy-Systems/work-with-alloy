@@ -1,8 +1,8 @@
 interface:
   display_name: "Work with Alloy"
-  short_description: "Use Alloy as the business workplace source of truth."
+  short_description: "Find and follow current Alloy skills through MCP."
   icon_small: "./assets/alloy-color.svg"
   brand_color: "#111827"
-  default_prompt: "Use $work-with-alloy. Read Alloy for business-workplace context, durable knowledge, artifacts, and connected systems; answer clearly general ephemeral questions directly."
+  default_prompt: "Use $work-with-alloy to find the relevant Alloy skills, technical references, and workspace context before acting."
 policy:
   allow_implicit_invocation: true
