@@ -32,7 +32,10 @@ Use the API equivalents described below when operating without MCP.
    in the MCP context. If that list is absent, incomplete, or ambiguous, use
    `skill_search` and inspect readable `.skills` folders with Storage tools as
    needed. The available list may include both organization and system skills.
-2. Load every applicable skill with `skill` before acting. Read supporting files
+2. For workspace configuration, component selection, or connecting an Alloy business
+   process, start with the `configure-alloy` skill. For a specific database, workflow,
+   or website change whose design is settled, load `databases`, `workflows`, or
+   `websites` directly. Load every applicable skill with `skill` before acting. Read supporting files
    with `skill_read` when the skill calls for them. Reuse instructions already read
    in this task, and reassess when the task changes or new instructions appear.
 3. Read the technical references named by the skill. When no matching skill exists

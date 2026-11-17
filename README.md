@@ -62,8 +62,9 @@ trees.
 
 Alloy MCP supplies the connected teammate's operating instructions, available
 skills, and workspace context. The host skill directs the external agent to use
-that guidance and load the specialized skills relevant to each task. Workflows,
-databases, and websites use their own Alloy skills. Technical questions use the
+that guidance and load the specialized skills relevant to each task. Workspace
+configuration starts with `configure-alloy`, which selects and connects the building
+blocks. Workflows, databases, and websites use their own Alloy skills for component work. Technical questions use the
 system documentation available through MCP.
 
 The connected AI Teammate record in Alloy determines which instructions and skills the external
