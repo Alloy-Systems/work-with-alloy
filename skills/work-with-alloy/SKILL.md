@@ -32,12 +32,14 @@ Use the API equivalents described below when operating without MCP.
    in the MCP context. If that list is absent, incomplete, or ambiguous, use
    `skill_search` and inspect readable `.skills` folders with Storage tools as
    needed. The available list may include both organization and system skills.
-2. For workspace configuration, component selection, or connecting an Alloy business
-   process, start with the `configure-alloy` skill. For a specific database, workflow,
-   or website change whose design is settled, load `databases`, `workflows`, or
-   `websites` directly. Load every applicable skill with `skill` before acting. Read supporting files
-   with `skill_read` when the skill calls for them. Reuse instructions already read
-   in this task, and reassess when the task changes or new instructions appear.
+2. Before any change to the workspace configuration, however small (databases, views,
+   websites, workflows, triggers, schedules, navigation, teammates, skills, connectors,
+   variables, or access), load `configure-alloy` first, then the specialist skill it names,
+   such as `databases`, `workflows`, or `websites`. Use `configure-alloy` also to design or
+   troubleshoot a business process in Alloy. Load every applicable skill with `skill` before
+   acting. Read supporting files with `skill_read` when the skill calls for them. Reuse
+   instructions already read in this task, and reassess when the task changes or new
+   instructions appear.
 3. Read the technical references named by the skill. When no matching skill exists
    or a technical detail is unresolved, use `system_search_documentation` or
    `system_list_documentation`, then `system_read_documentation`. Verify paths
@@ -59,6 +61,8 @@ and sources before changing anything.
 - **Storage** holds working documents, files, and deliverables. Default to Alloy
   for those artifacts unless the user specifies another destination. Use MCP or
   the PAT-authenticated Private API as appropriate for the operation.
+- **`.configuration/`** in Storage holds the builder's notes for each Alloy solution: how
+  it is built, why, and its change history. `configure-alloy` says how to read and keep them.
 - **Skills** hold reusable procedures. Load them through the skill tools.
 - **System documentation** explains Alloy features, APIs, and operating contracts.
   Read it through the system-documentation tools.
