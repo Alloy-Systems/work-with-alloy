@@ -69,13 +69,14 @@ and sources before changing anything.
 
 Task tracking applies only when explicitly enabled or directly requested.
 
-## Scripted Storage operations
+## Scripted Storage and database operations
 
-Use the Private API for bulk uploads, downloads, or file processing in a trusted
-script when the user has supplied a personal access token (PAT). Read the current
+Use the Private API in a trusted script when the user has supplied a personal access
+token (PAT): for bulk uploads, downloads, or file processing in Storage, and for
+reading, inserting, updating, or deleting many database rows. Read the current
 [Private API reference](https://alloy.cx/docs/reference/tech-docs/private-api)
-for routes, payloads, and limits. Hosted Storage uses
-`https://api.alloy.cx/api/private/storage`. Authenticate with
+for routes, payloads, limits, and the Python and JavaScript SDKs. Hosted routes start at
+`https://api.alloy.cx/api/private` (`/storage`, `/databases`). Authenticate with
 `Authorization: Bearer <PAT>` or `api-key: <PAT>`.
 
 The PAT selects its organization and acts with its user's current permissions. Uploads overwrite existing files.
